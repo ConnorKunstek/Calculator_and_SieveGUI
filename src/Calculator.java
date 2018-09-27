@@ -20,12 +20,16 @@ public class Calculator extends JFrame implements ActionListener {
     private CalculatorButton add;
 
     private JPanel buttons;
-    private JPanel text;
+
+    private JPanel output;
+    private JTextField outputText;
 
     public Calculator(){
         super("Calculator");
 
         buttons = new JPanel();
+        outputText = new JTextField();
+        output = new JPanel();
 
         Container c = getContentPane();
 
@@ -37,40 +41,44 @@ public class Calculator extends JFrame implements ActionListener {
         }
 
         //top row
-        calculatorView.add(numbers[7]);
-        calculatorView.add(numbers[8]);
-        calculatorView.add(numbers[9]);
+        buttons.add(numbers[7]);
+        buttons.add(numbers[8]);
+        buttons.add(numbers[9]);
         divide = new CalculatorButton("/");
-        calculatorView.add(divide);
+        buttons.add(divide);
 
         //top middle row
-        calculatorView.add(numbers[4]);
-        calculatorView.add(numbers[5]);
-        calculatorView.add(numbers[6]);
+        buttons.add(numbers[4]);
+        buttons.add(numbers[5]);
+        buttons.add(numbers[6]);
         multiply = new CalculatorButton("*");
-        calculatorView.add(multiply);
+        buttons.add(multiply);
 
         //bottom middle row
-        calculatorView.add(numbers[1]);
-        calculatorView.add(numbers[2]);
-        calculatorView.add(numbers[3]);
+        buttons.add(numbers[1]);
+        buttons.add(numbers[2]);
+        buttons.add(numbers[3]);
         subtract = new CalculatorButton("-");
-        calculatorView.add(subtract);
+        buttons.add(subtract);
 
         //bottom row
-        calculatorView.add(numbers[0]);
+        buttons.add(numbers[0]);
         decimal = new CalculatorButton(".");
-        calculatorView.add(decimal);
+        buttons.add(decimal);
         equal = new CalculatorButton("=");
-        calculatorView.add(equal);
+        buttons.add(equal);
         add = new CalculatorButton("+");
-        calculatorView.add(add);
+        buttons.add(add);
 
+        buttons.setLayout(new GridLayout(4, 4, 2, 2));
 
-        calculatorView.setLayout(new GridLayout(4, 4, 2, 2));
+        output.add(outputText);
+        output.setLayout(new GridLayout(1, 1, 2,0));
 
-        c.add(calculatorView);
-        setSize(500, 500);
+        c.add(output, BorderLayout.NORTH);
+        c.add(buttons, BorderLayout.CENTER);
+
+        setSize(250, 250);
         setVisible(true);
 
     }
