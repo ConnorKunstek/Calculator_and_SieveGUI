@@ -11,6 +11,7 @@ import javax.swing.*;
 
 public class Calculator extends JFrame implements ActionListener {
 
+    //data
     private CalculatorButton numbers[];
     private CalculatorButton decimal;
     private CalculatorButton equal;
@@ -19,32 +20,34 @@ public class Calculator extends JFrame implements ActionListener {
     private CalculatorButton subtract;
     private CalculatorButton add;
 
+    //for semi-working calculator
     private String current;
     private int currentNum;
 
+    //GUI elements
     private JPanel buttons;
-
     private JPanel textField;
     private JTextField field;
 
+    //constructor
     public Calculator(){
         super("Calculator");
 
+        //initialize
         current = "";
-
         buttons = new JPanel();
         field = new JTextField();
         textField = new JPanel();
-
+        numbers = new CalculatorButton[10];
         Container c = getContentPane();
 
-        numbers = new CalculatorButton[10];
-
+        //create number buttons
         for(int i = 9; i > -1; i--){
             CalculatorButton num = new CalculatorButton(i);
             numbers[i] = num;
         }
 
+        //add actions to number buttons
         for(CalculatorButton num : numbers){
             num.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
@@ -86,14 +89,12 @@ public class Calculator extends JFrame implements ActionListener {
         add = new CalculatorButton("+");
         buttons.add(add);
 
+        //create GUI
         buttons.setLayout(new GridLayout(4, 4, 2, 2));
-
         textField.add(field);
         textField.setLayout(new GridLayout(1, 1, 2,0));
-
         c.add(field, BorderLayout.NORTH);
         c.add(buttons, BorderLayout.CENTER);
-
         setSize(250, 250);
         setVisible(true);
 

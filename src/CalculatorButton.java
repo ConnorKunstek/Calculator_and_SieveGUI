@@ -5,16 +5,17 @@
 //To run,   $javac Calculator.java
 //          $java Calculator
 
+//imports
 import javax.swing.*;
 
 public class CalculatorButton extends JButton{
 
-    private ClassLoader loader = getClass().getClassLoader();
-
+    //saves value
     private int number;
-
+    //saves symbol
     private String symbol;
 
+    //constructor for number buttons
     public CalculatorButton(int num){
         super();
         number = num;
@@ -22,12 +23,14 @@ public class CalculatorButton extends JButton{
         super.setText(text);
     }
 
+    //constructor for symbol buttons
     public CalculatorButton(String symb){
         super();
         symbol = symb;
         super.setText(symb);
     }
 
+    //return number
     public int getNumber(){
         return this.number;
     }
