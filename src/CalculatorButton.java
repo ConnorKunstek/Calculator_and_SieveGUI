@@ -28,5 +28,7 @@ public class CalculatorButton extends JButton{
         super.setText(symb);
     }
 
-
+    public int getNumber(){
+        return this.number;
+    }
 }

@@ -19,17 +19,22 @@ public class Calculator extends JFrame implements ActionListener {
     private CalculatorButton subtract;
     private CalculatorButton add;
 
+    private String current;
+    private int currentNum;
+
     private JPanel buttons;
 
-    private JPanel output;
-    private JTextField outputText;
+    private JPanel textField;
+    private JTextField field;
 
     public Calculator(){
         super("Calculator");
 
+        current = "";
+
         buttons = new JPanel();
-        outputText = new JTextField();
-        output = new JPanel();
+        field = new JTextField();
+        textField = new JPanel();
 
         Container c = getContentPane();
 
@@ -38,6 +43,17 @@ public class Calculator extends JFrame implements ActionListener {
         for(int i = 9; i > -1; i--){
             CalculatorButton num = new CalculatorButton(i);
             numbers[i] = num;
+        }
+
+        for(CalculatorButton num : numbers){
+            num.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    current = current + num.getNumber();
+                    currentNum = Integer.parseInt(current);
+                    field.setText(current);
+                    repaint();
+                }
+            });
         }
 
         //top row
@@ -72,10 +88,10 @@ public class Calculator extends JFrame implements ActionListener {
 
         buttons.setLayout(new GridLayout(4, 4, 2, 2));
 
-        output.add(outputText);
-        output.setLayout(new GridLayout(1, 1, 2,0));
+        textField.add(field);
+        textField.setLayout(new GridLayout(1, 1, 2,0));
 
-        c.add(output, BorderLayout.NORTH);
+        c.add(field, BorderLayout.NORTH);
         c.add(buttons, BorderLayout.CENTER);
 
         setSize(250, 250);
@@ -83,10 +99,7 @@ public class Calculator extends JFrame implements ActionListener {
 
     }
 
-    public void actionPerformed(ActionEvent e)
-    {
-
-    }
+    public void actionPerformed(ActionEvent e) {}
 
     public static void main(String args[])
     {
